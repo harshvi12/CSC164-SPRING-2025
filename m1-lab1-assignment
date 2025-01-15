@@ -1,0 +1,7 @@
+// module 1 lab 1 project
+
+class m1lab1assignment {
+    public static void main(String[] args) {
+        System.out.println("My name is Harshvi");
+    }
+}
