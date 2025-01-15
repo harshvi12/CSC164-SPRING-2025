@@ -1,7 +1,17 @@
-// module 1 lab 1 project
+/*
+Name         : Harshvi Patel
+Class        : CSC-164
+Class Section: 401
+Date         : 01/15/2025
+Assignment   : Assignment 1
+I wrote all the code submitted, and I have provided citations and references where appropriate.
 
+Code adapted from:
+https://www.programiz.com/java-programming/hello-world
+*/
 class m1lab1assignment {
     public static void main(String[] args) {
         System.out.println("My name is Harshvi");
     }
 }
+
