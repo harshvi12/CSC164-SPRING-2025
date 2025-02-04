@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class m3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create an array to store the number of cars sold each month
+        int[] carsSold = new int[12];
+
+        // Get the number of cars sold for each month from the user
+        for (int i = 0; i < carsSold.length; i++) {
+            System.out.print("Enter the number of cars sold in month " + (i + 1) + ": ");
+            carsSold[i] = scanner.nextInt();
+        }
+
+        // Display the number of cars sold and check if the commission applies
+        for (int i = 0; i < carsSold.length; i++) {
+            System.out.print("Month " + (i + 1) + ": " + carsSold[i] + " cars");
+            if (carsSold[i] >= 20) {
+                System.out.println(" ** extra 10% commission");
+            } else {
+                System.out.println();
+            }
+        }
+        scanner.close();
+    }
+}
