@@ -1,0 +1,109 @@
+/*
+ * I wrote all the code submitted OR I have provided citations and references where appropriate.
+
+ */
+import java.util.Random;
+import java.util.Scanner;
+
+public class m3assignment {  // Class declaration
+    // Randomly generate scores for 10 games, each game having 2 periods
+    static int[][] gamesScores = new int[10][2];
+
+    public static void main(String[] args) {
+        Random rand = new Random();
+        // Populate the array with random scores between 0 and 50
+        for (int i = 0; i < 10; i++) {
+            gamesScores[i][0] = rand.nextInt(51); // Period 1 score (0-50)
+            gamesScores[i][1] = rand.nextInt(51); // Period 2 score (0-50)
+        }
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            displayMenu();
+            int choice = getUserChoice(scanner);
+
+            switch (choice) {
+                case 1:
+                    displayAverageGameScore();
+                    break;
+                case 2:
+                    displayGameScores(scanner);
+                    break;
+                case 3:
+                    displayAveragePeriodScore(scanner);
+                    break;
+                case 4:
+                    System.out.println("Exiting the program.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please select a valid option.");
+            }
+        }
+    }
+
+    // Method to display the menu
+    public static void displayMenu() {
+        System.out.println("\nMenu:");
+        System.out.println("1. View team's average points scored per game for the season");
+        System.out.println("2. View team's scores for a given match (including total points)");
+        System.out.println("3. View team's average points scored per period");
+        System.out.println("4. Exit");
+    }
+
+    // Method to get a valid user choice
+    public static int getUserChoice(Scanner scanner) {
+        int choice = -1;
+        try {
+            System.out.print("Please select an option (1-4): ");
+            choice = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+        }
+        return choice;
+    }
+
+    // Method to calculate and display the average points per game
+    public static void displayAverageGameScore() {
+        int totalPoints = 0;
+        for (int i = 0; i < gamesScores.length; i++) {
+            totalPoints += gamesScores[i][0] + gamesScores[i][1]; // Add Period 1 and Period 2
+        }
+        double avgGameScore = (double) totalPoints / gamesScores.length;
+        System.out.printf("Team's average points scored per game: %.2f\n", avgGameScore);
+    }
+
+    // Method to display the scores for a specific game
+    public static void displayGameScores(Scanner scanner) {
+        System.out.print("Enter the match number (1-10): ");
+        int matchNumber = Integer.parseInt(scanner.nextLine());
+
+        if (matchNumber >= 1 && matchNumber <= 10) {
+            int period1 = gamesScores[matchNumber - 1][0];
+            int period2 = gamesScores[matchNumber - 1][1];
+            int total = period1 + period2;
+            System.out.printf("Game %d - Period 1: %d points, Period 2: %d points, Total: %d points\n",
+                    matchNumber, period1, period2, total);
+        } else {
+            System.out.println("Invalid match number. Please enter a number between 1 and 10.");
+        }
+    }
+
+    // Method to calculate and display the average points scored in a specific period
+    public static void displayAveragePeriodScore(Scanner scanner) {
+        System.out.print("Enter the period number (1 or 2): ");
+        int period = Integer.parseInt(scanner.nextLine());
+
+        if (period == 1 || period == 2) {
+            int totalPoints = 0;
+            for (int i = 0; i < gamesScores.length; i++) {
+                totalPoints += gamesScores[i][period - 1]; // 0 for Period 1, 1 for Period 2
+            }
+            double avgPeriodScore = (double) totalPoints / gamesScores.length;
+            System.out.printf("Team's average points scored in period %d: %.2f\n", period, avgPeriodScore);
+        } else {
+            System.out.println("Invalid period number. Please enter 1 or 2.");
+        }
+    }
+}
