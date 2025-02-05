@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+public class m4lab {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] sales = {10, 19, 21, 15, 25, 9, 11, 15, 30, 35, 21, 19};
+        int choice;
+
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1: Show all sales");
+            System.out.println("2: Show sales by month");
+            System.out.println("3: Show commission by month");
+            System.out.println("4: Exit program");
+            System.out.print("Enter your choice (1-4): ");
+            
+            while (!scanner.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a number between 1 and 4.");
+                scanner.next(); // clear invalid input
+            }
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    showAllSales(sales);
+                    break;
+                case 2:
+                    System.out.print("Enter the month number (1-12): ");
+                    int month = getValidMonth(scanner);
+                    showSalesByMonth(sales, month);
+                    break;
+                case 3:
+                    System.out.print("Enter the month number (1-12): ");
+                    month = getValidMonth(scanner);
+                    double commission = calculateCommissionByMonth(sales[month - 1]);
+                    System.out.printf("Commission for month %d is: $%.2f\n", month, commission);
+                    break;
+                case 4:
+                    System.out.println("Goodbye! Have a great day.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+            }
+        } while (choice != 4);
+
+        scanner.close();
+    }
+
+    public static void showAllSales(int[] sales) {
+        System.out.println("\nMonthly Sales:");
+        for (int i = 0; i < sales.length; i++) {
+            System.out.print("Month " + (i + 1) + ": " + sales[i] + " cars");
+            if (sales[i] > 20) {
+                System.out.print(" ** Extra 10% commission");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void showSalesByMonth(int[] sales, int month) {
+        System.out.println("Month " + month + ": " + sales[month - 1] + " cars");
+    }
+
+    public static double calculateCommissionByMonth(int sales) {
+        if (sales <= 20) {
+            return sales * 500;
+        } else {
+            return (20 * 500) + ((sales - 20) * 550);
+        }
+    }
+    
+    public static int getValidMonth(Scanner scanner) {
+        int month;
+        while (true) {
+            while (!scanner.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a number between 1 and 12.");
+                scanner.next(); // clear invalid input
+            }
+            month = scanner.nextInt();
+            if (month >= 1 && month <= 12) {
+                break;
+            } else {
+                System.out.println("Invalid month. Please enter a number between 1 and 12.");
+            }
+        }
+        return month;
+    }
+}
