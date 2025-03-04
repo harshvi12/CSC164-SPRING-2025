@@ -1,0 +1,57 @@
+class Cat {
+    private int age; // Stores the cat's age
+
+    // Get the cat's age
+    public int getAge() {
+        return age;
+    }
+
+    // Set the cat's age using an integer
+    public void setAge(int newAge) {
+        age = newAge;
+    }
+
+    // Set the cat's age using a String (convert to int)
+    public void setAge(String newAge) {
+        age = Integer.parseInt(newAge);
+    }
+
+    // Check if the cat is old (older than 10 years)
+    public boolean isOld() {
+        return age > 10;
+    }
+
+    // Compare the age of this cat with another cat
+    public boolean sameAge(Cat anotherCat) {
+        return this.age == anotherCat.getAge();
+    }
+
+    // Increase the cat's age by 1 (birthday)
+    public void birthday() {
+        age++;
+    }
+}
+public class Module5Lab1 {
+    public static void main(String[] args) {
+        // Create a Cat object
+        Cat myCat = new Cat();
+        myCat.setAge(5);
+        System.out.println("My cat's age: " + myCat.getAge()); // Output: 5
+
+        // Create another Cat object
+        Cat anotherCat = new Cat();
+        anotherCat.setAge("7");
+        System.out.println("Another cat's age: " + anotherCat.getAge()); // Output: 7
+
+        // Check if they are old
+        System.out.println("Is my cat old? " + myCat.isOld()); // Output: false
+        System.out.println("Is another cat old? " + anotherCat.isOld()); // Output: false
+
+        // Celebrate birthday
+        myCat.birthday();
+        System.out.println("My cat's age after birthday: " + myCat.getAge()); // Output: 6
+
+        // Compare ages
+        System.out.println("Are both cats the same age? " + myCat.sameAge(anotherCat)); // Output: false
+    }
+}
