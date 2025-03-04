@@ -1,0 +1,76 @@
+// module5assignment.java
+import java.util.Scanner;
+
+class Drink {
+    private String name;
+    private double price;
+    private int calories;
+    private double fat;
+    private double sugar;
+
+    // Constructor
+    public Drink(String name, double price, int calories, double fat, double sugar) {
+        this.name = name;
+        this.price = price;
+        this.calories = calories;
+        this.fat = fat;
+        this.sugar = sugar;
+    }
+
+    // Getters
+    public String getName() { return name; }
+    public double getPrice() { return price; }
+    public int getCalories() { return calories; }
+    public double getFat() { return fat; }
+    public double getSugar() { return sugar; }
+
+    // Display Drink details
+    public String toString() {
+        return name + " - $" + price + ", " + calories + " kcal, " + fat + "g fat, " + sugar + "g sugar";
+    }
+}
+
+public class module5assignment {
+    public static void main(String[] args) {
+        System.out.println("Welcome to MoonBucks Coffee House!");
+
+        // Create and initialize the menu
+        Drink[] menu = {
+                new Drink("Caramel Macchiato", 4.75, 250, 7.0, 33.0),
+                new Drink("Vanilla Latte", 4.50, 200, 6.0, 28.0),
+                new Drink("Iced Americano", 3.25, 15, 0.1, 0.0)
+        };
+
+        // Display all menu items
+        System.out.println("\nOur menu items for today include:");
+        for (Drink each : menu) {
+            System.out.println(each);
+        }
+
+        // User input for filtering
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nWould you like to filter drinks by (1) Calories (2) Fat (3) Sugar?");
+        int choice = scanner.nextInt();
+
+        System.out.println("Enter the maximum amount you want to filter by:");
+        double maxValue = scanner.nextDouble();
+
+        System.out.println("\nFiltered Drinks:");
+        boolean found = false;
+
+        for (Drink each : menu) {
+            if ((choice == 1 && each.getCalories() <= maxValue) ||
+                    (choice == 2 && each.getFat() <= maxValue) ||
+                    (choice == 3 && each.getSugar() <= maxValue)) {
+                System.out.println(each);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No drinks match your filter criteria.");
+        }
+
+        scanner.close();
+    }
+}
