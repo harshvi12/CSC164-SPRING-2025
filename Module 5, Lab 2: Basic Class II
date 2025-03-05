@@ -1,1 +1,44 @@
+// File: Module5Lab2.java
+
+import java.util.Scanner;
+
+public class Module5Lab2 {
+    public static void main(String[] args) {
+        // Create two cat objects with names
+        Cat garfield = new Cat("Garfield", 0);
+        Cat crookshanks = new Cat("Crookshanks", 0);
+
+        // Set their ages
+        garfield.setAge(7);
+        crookshanks.setAge(11);
+
+        // Check if Garfield is old
+        System.out.println(garfield.getName() + " is old? " + garfield.isOld());
+
+        // Check if Garfield and Crookshanks are the same age
+        System.out.println(garfield.getName() + " and " + crookshanks.getName() + " are the same age? " + garfield.sameAge(crookshanks));
+
+        // Create a third cat using user input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the name of the third cat: ");
+        String thirdCatName = scanner.nextLine();
+        System.out.print("Enter the age of the third cat: ");
+        int thirdCatAge = scanner.nextInt();
+
+        Cat thirdCat = new Cat(thirdCatName, thirdCatAge);
+
+        // Determine the oldest cat
+        Cat oldest = garfield;
+        if (crookshanks.getAge() > oldest.getAge()) {
+            oldest = crookshanks;
+        }
+        if (thirdCat.getAge() > oldest.getAge()) {
+            oldest = thirdCat;
+        }
+
+        System.out.println("The oldest cat is " + oldest.getName() + " with age " + oldest.getAge());
+
+        scanner.close();
+    }
+}
 
