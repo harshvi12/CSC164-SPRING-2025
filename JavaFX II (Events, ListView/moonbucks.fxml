@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="MoonbucksController">
+
+    <HBox spacing="10">
+        <Button text="All Products" onAction="#showAllProducts"/>
+        <Button text="Drinks Only" onAction="#showOnlyDrinks"/>
+        <Button text="Gift Cards Only" onAction="#showOnlyGiftCards"/>
+    </HBox>
+
+    <ListView fx:id="productListView" prefHeight="200" prefWidth="400"/>
+    <Label fx:id="totalLabel" text="Total (w/ tax): $0.00"/>
+</VBox>
