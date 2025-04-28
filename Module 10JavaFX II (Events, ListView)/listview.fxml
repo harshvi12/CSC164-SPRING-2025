@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="yourpackage.Controller">
+    <children>
+        <VBox spacing="10.0" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="272.0" prefWidth="372.0">
+            <ListView fx:id="myListView" prefHeight="150.0" prefWidth="350.0" />
+            <Label fx:id="selectedLabel" text="Selected:" />
+            <HBox spacing="10.0" alignment="CENTER">
+                <Button fx:id="addButton" text="Add Item" />
+                <Button fx:id="clearButton" text="Clear List" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
